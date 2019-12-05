@@ -58,3 +58,4 @@
 ### Extension Tasks
 
 - Write a class which can take a JSON representation of a filter and sort method and produce the runtime filter/sort for this
+- Rewrite the above sort and filter classes using java streams. All unit tests should be unaffected
