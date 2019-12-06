@@ -2,7 +2,7 @@
 
 ### Project Goal
 
- - Create a series of classes which can filter and sort a list of `User Post` objects. This will form part of the 
+ - Create a series of classes which can filter and sort a list of `User Post` objects.
 
 ### Skills
 
@@ -57,5 +57,5 @@
 
 ### Extension Tasks
 
-- Write a class which can take a JSON representation of a filter and sort method and produce the runtime filter/sort for this
 - Rewrite the above sort and filter classes using java streams. All unit tests should be unaffected
+- Write a class which can take a JSON representation of a filter and sort method and produce the runtime filter/sort for this
