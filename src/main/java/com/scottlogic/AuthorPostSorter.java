@@ -7,15 +7,18 @@ import java.util.List;
 
 public class AuthorPostSorter implements PostSorter {
 
-    public List<UserPost> sort(List<UserPost> inputList) {
-        if (inputList == null) {
+    public List<UserPost> sort(List<UserPost> inputList, SortOrder sortDirection) {
+        if (inputList == null || inputList.size() == 0) {
             return Arrays.asList();
         }
 
-        if (inputList.size() == 0) {
-            return inputList;
+        if (sortDirection == SortOrder.ASC) {
+            Collections.sort(inputList, Comparator.comparing(UserPost::getAuthor));
         }
-        Collections.sort(inputList, Comparator.comparing(UserPost::getAuthor));
+        else if (sortDirection == SortOrder.DESC) {
+            Collections.sort(inputList, Comparator.comparing(UserPost::getAuthor).reversed());
+        }
+
         return inputList;
     }
 }
