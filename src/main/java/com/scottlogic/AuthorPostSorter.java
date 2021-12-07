@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class AuthorPostSorter implements PostSorter {
+public class AuthorPostSorter {
 
     public List<UserPost> sort(List<UserPost> inputList, SortOrder sortDirection) {
         if (inputList == null || inputList.size() == 0) {

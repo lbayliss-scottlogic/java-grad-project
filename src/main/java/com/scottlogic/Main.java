@@ -1,5 +1,8 @@
 package com.scottlogic;
 
+import com.scottlogic.sort.SortAuthorAscending;
+import com.scottlogic.sort.SortAuthorDescending;
+
 import static com.scottlogic.utils.UserPostData.getUserPosts;
 
 import java.util.List;
@@ -8,29 +11,32 @@ public class Main {
 
     public static void main(String[] args) {
         List<UserPost> userPosts = getUserPosts();
-        printAllUserPosts(userPosts);
-        printUserPostsByAscendingAuthor(userPosts);
+        sortAuthorAscending(userPosts);
+        sortAuthorDescending(userPosts);
     }
 
     /**
-     * Prints out all user posts
+     * Prints out user posts in Author-ascending order
      * @param userPosts The list of user posts to print out
      */
-    private static void printAllUserPosts(List<UserPost> userPosts) {
+    private static void sortAuthorAscending(List<UserPost> userPosts) {
+        SortStrategy sortAuthorAscending = new SortStrategy(new SortAuthorAscending());
+        sortAuthorAscending.sortPosts(userPosts);
+        System.out.println("Posts ascendingly-sorted with Strategy: ");
         for(UserPost userPost : userPosts) {
             System.out.println(userPost + "\n");
         }
     }
 
     /**
-     * Prints out all user posts sorted by author ascending
+     * Prints out user posts in Author-descending order
      * @param userPosts The list of user posts to sort then print out
      */
-    private static void printUserPostsByAscendingAuthor(List<UserPost> userPosts) {
-        AuthorPostSorter authorPostSorter = new AuthorPostSorter();
-        List<UserPost> sortedPostsByAuthor = authorPostSorter.sort(userPosts, SortOrder.ASC);
-        System.out.println("Sorted List: ");
-        for(UserPost userPost : sortedPostsByAuthor) {
+    private static void sortAuthorDescending(List<UserPost> userPosts) {
+        SortStrategy sortAuthorDescending = new SortStrategy(new SortAuthorDescending());
+        sortAuthorDescending.sortPosts(userPosts);
+        System.out.println("Posts descendingly-sorted with Strategy: ");
+        for(UserPost userPost : userPosts) {
             System.out.println(userPost + "\n");
         }
     }
