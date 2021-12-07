@@ -2,9 +2,6 @@ package com.scottlogic;
 
 import static com.scottlogic.utils.UserPostData.getUserPosts;
 
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -21,8 +18,7 @@ public class Main {
      */
     private static void printAllUserPosts(List<UserPost> userPosts) {
         for(UserPost userPost : userPosts) {
-            System.out.println(userPost);
-            System.out.println("");
+            System.out.println(userPost + "\n");
         }
     }
 
@@ -35,8 +31,7 @@ public class Main {
         List<UserPost> sortedPostsByAuthor = authorPostSorter.sort(userPosts, SortOrder.ASC);
         System.out.println("Sorted List: ");
         for(UserPost userPost : sortedPostsByAuthor) {
-            System.out.println(userPost);
-            System.out.println("");
+            System.out.println(userPost + "\n");
         }
     }
 }

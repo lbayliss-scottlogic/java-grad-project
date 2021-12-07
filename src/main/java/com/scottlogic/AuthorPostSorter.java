@@ -12,10 +12,10 @@ public class AuthorPostSorter implements PostSorter {
             return Arrays.asList();
         }
 
-        if (sortDirection == SortOrder.ASC) {
+        if (sortDirection.equals(SortOrder.ASC)) {
             Collections.sort(inputList, Comparator.comparing(UserPost::getAuthor));
         }
-        else if (sortDirection == SortOrder.DESC) {
+        else if (sortDirection.equals(SortOrder.DESC)) {
             Collections.sort(inputList, Comparator.comparing(UserPost::getAuthor).reversed());
         }
 
