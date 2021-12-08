@@ -1,13 +1,13 @@
 package com.scottlogic.sort;
 
-import com.scottlogic.PostSorter;
+import com.scottlogic.SortStrategy;
 import com.scottlogic.UserPost;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class SortAuthorDescending implements PostSorter {
+public class SortAuthorDescending implements SortStrategy {
 
     @Override
     public List<UserPost> sort(List<UserPost> inputList) {
