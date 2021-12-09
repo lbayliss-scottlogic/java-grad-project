@@ -1,9 +1,6 @@
 package com.scottlogic;
 
-import com.scottlogic.sort.SortAuthorAscending;
-import com.scottlogic.sort.SortAuthorDescending;
-
-import com.scottlogic.sort.SortDateAscending;
+import com.scottlogic.sort.*;
 
 import static com.scottlogic.utils.UserPostData.getUserPosts;
 
@@ -13,18 +10,17 @@ public class Main {
 
     public static void main(String[] args) {
         List<UserPost> userPosts = getUserPosts();
-        //sortAuthorAscending(userPosts);
-        //sortAuthorDescending(userPosts);
-        sortDateAscending(userPosts);
+        sortAscending(userPosts);
+        sortDescending(userPosts);
     }
 
     /**
-     * Prints out user posts in Author-ascending order
+     * Prints out user posts in ascending order of
      * @param userPosts The list of user posts to print out
      */
-    private static void sortAuthorAscending(List<UserPost> userPosts) {
-        SortContext sortAuthorAscending = new SortContext(new SortAuthorAscending());
-        sortAuthorAscending.sortPosts(userPosts);
+    private static void sortAscending(List<UserPost> userPosts) {
+        SortContext sortContentLengthAscending = new SortContext(new SortContentLengthAscending());
+        sortContentLengthAscending.sortPosts(userPosts);
         System.out.println("Posts ascendingly-sorted with Strategy: ");
         for(UserPost userPost : userPosts) {
             System.out.println(userPost + "\n");
@@ -32,26 +28,15 @@ public class Main {
     }
 
     /**
-     * Prints out user posts in Author-descending order
+     * Prints out user posts in descending order of
      * @param userPosts The list of user posts to sort then print out
      */
-    private static void sortAuthorDescending(List<UserPost> userPosts) {
-        SortContext sortAuthorDescending = new SortContext(new SortAuthorDescending());
-        sortAuthorDescending.sortPosts(userPosts);
+    private static void sortDescending(List<UserPost> userPosts) {
+        SortContext sortContentLengthDescending = new SortContext(new SortContentLengthDescending());
+        sortContentLengthDescending.sortPosts(userPosts);
         System.out.println("Posts descendingly-sorted with Strategy: ");
         for(UserPost userPost : userPosts) {
             System.out.println(userPost + "\n");
         }
     }
-
-    private static void sortDateAscending(List<UserPost> userPosts) {
-        SortContext sortDateAscending = new SortContext(new SortDateAscending());
-        sortDateAscending.sortPosts(userPosts);
-        System.out.println("Posts ascendingly-sorted by date: ");
-        for(UserPost userPost : userPosts) {
-            System.out.println(userPost + "\n");
-        }
-    }
-
-
 }
