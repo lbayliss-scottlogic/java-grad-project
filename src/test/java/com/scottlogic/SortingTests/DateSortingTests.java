@@ -1,9 +1,9 @@
 package com.scottlogic.SortingTests;
 
 import com.scottlogic.SortContext;
+import com.scottlogic.SortOrder;
 import com.scottlogic.UserPost;
-import com.scottlogic.sort.SortDateAscending;
-import com.scottlogic.sort.SortDateDescending;
+import com.scottlogic.sort.SortDate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -28,15 +28,14 @@ public class DateSortingTests {
             "An example of a post \nwith lines breaks.", 3);
     List<UserPost> userPosts = Arrays.asList(userPost1, userPost2, userPost3);
 
-    SortContext sortDateAscending = new SortContext(new SortDateAscending());
-    SortContext sortDateDescending = new SortContext(new SortDateDescending());
+    SortContext sortDate = new SortContext(new SortDate());
 
     @Test
     @DisplayName("Ascending functionality")
     void sortDateAscending() {
         List<UserPost> postsToSort = userPosts;
         List<UserPost> expectedDateSort = Arrays.asList(userPost1, userPost2, userPost3);
-        Assertions.assertEquals(expectedDateSort, sortDateAscending.sortPosts(postsToSort));
+        Assertions.assertEquals(expectedDateSort, sortDate.sortPosts(postsToSort, SortOrder.ASC));
     }
 
     @Test
@@ -44,7 +43,7 @@ public class DateSortingTests {
     void sortDateDescending() {
         List<UserPost> postsToSort = userPosts;
         List<UserPost> expectedDateSort = Arrays.asList(userPost3, userPost2, userPost1);
-        Assertions.assertEquals(expectedDateSort, sortDateDescending.sortPosts(postsToSort));
+        Assertions.assertEquals(expectedDateSort, sortDate.sortPosts(postsToSort, SortOrder.DESC));
     }
 
     @Nested
@@ -54,14 +53,14 @@ public class DateSortingTests {
         @DisplayName("ascending sort")
         void sortAscending_emptyInput() {
             List<UserPost> emptyList = Arrays.asList();
-            Assertions.assertEquals(emptyList, sortDateAscending.sortPosts(emptyList));
+            Assertions.assertEquals(emptyList, sortDate.sortPosts(emptyList, SortOrder.ASC));
         }
 
         @Test
         @DisplayName("descending sort")
         void sortDescending_emptyInput() {
             List<UserPost> emptyList = Arrays.asList();
-            Assertions.assertEquals(emptyList, sortDateDescending.sortPosts(emptyList));
+            Assertions.assertEquals(emptyList, sortDate.sortPosts(emptyList, SortOrder.DESC));
         }
     }
 
@@ -72,14 +71,14 @@ public class DateSortingTests {
         @DisplayName("ascending sort")
         void sortAscending_nullInput() {
             List<UserPost> nullInput = Arrays.asList();
-            Assertions.assertEquals(nullInput, sortDateAscending.sortPosts(null));
+            Assertions.assertEquals(nullInput, sortDate.sortPosts(null, SortOrder.ASC));
         }
 
         @Test
         @DisplayName("descending sort")
         void sortDescending_nullInput() {
             List<UserPost> nullInput = Arrays.asList();
-            Assertions.assertEquals(nullInput, sortDateDescending.sortPosts(null));
+            Assertions.assertEquals(nullInput, sortDate.sortPosts(null, SortOrder.DESC));
         }
     }
 }

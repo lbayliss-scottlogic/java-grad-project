@@ -19,8 +19,8 @@ public class Main {
      * @param userPosts The list of user posts to print out
      */
     private static void sortAscending(List<UserPost> userPosts) {
-        SortContext sortContentLengthAscending = new SortContext(new SortContentLengthAscending());
-        sortContentLengthAscending.sortPosts(userPosts);
+        SortContext sortContentLengthAscending = new SortContext(new SortContentLength());
+        sortContentLengthAscending.sortPosts(userPosts, SortOrder.ASC);
         System.out.println("Posts ascendingly-sorted with Strategy: ");
         for(UserPost userPost : userPosts) {
             System.out.println(userPost + "\n");
@@ -32,8 +32,8 @@ public class Main {
      * @param userPosts The list of user posts to sort then print out
      */
     private static void sortDescending(List<UserPost> userPosts) {
-        SortContext sortContentLengthDescending = new SortContext(new SortContentLengthDescending());
-        sortContentLengthDescending.sortPosts(userPosts);
+        SortContext sortContentLengthDescending = new SortContext(new SortContentLength());
+        sortContentLengthDescending.sortPosts(userPosts, SortOrder.DESC);
         System.out.println("Posts descendingly-sorted with Strategy: ");
         for(UserPost userPost : userPosts) {
             System.out.println(userPost + "\n");

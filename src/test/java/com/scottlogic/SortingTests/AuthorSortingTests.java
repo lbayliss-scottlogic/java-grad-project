@@ -1,9 +1,9 @@
 package com.scottlogic.SortingTests;
 
 import com.scottlogic.SortContext;
+import com.scottlogic.SortOrder;
 import com.scottlogic.UserPost;
-import com.scottlogic.sort.SortAuthorAscending;
-import com.scottlogic.sort.SortAuthorDescending;
+import com.scottlogic.sort.SortAuthor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -28,15 +28,14 @@ public class AuthorSortingTests {
             "An example of a post \nwith lines breaks.", 3);
     List<UserPost> userPosts = Arrays.asList(userPost1, userPost2, userPost3);
 
-    SortContext sortAuthorAscending = new SortContext(new SortAuthorAscending());
-    SortContext sortAuthorDescending = new SortContext(new SortAuthorDescending());
+    SortContext sortAuthor = new SortContext(new SortAuthor());
 
     @Test
     @DisplayName("Ascending functionality")
     void sortAuthorAscending() {
         List<UserPost> postsToSort = userPosts;
         List<UserPost> expectedAuthorSort = Arrays.asList(userPost3, userPost2, userPost1);
-        Assertions.assertEquals(expectedAuthorSort, sortAuthorAscending.sortPosts(postsToSort));
+        Assertions.assertEquals(expectedAuthorSort, sortAuthor.sortPosts(postsToSort, SortOrder.ASC));
     }
 
     @Test
@@ -44,7 +43,7 @@ public class AuthorSortingTests {
     void sortAuthorDescending() {
         List<UserPost> postsToSort = userPosts;
         List<UserPost> expectedAuthorSort = Arrays.asList(userPost1, userPost2, userPost3);
-        Assertions.assertEquals(expectedAuthorSort, sortAuthorDescending.sortPosts(postsToSort));
+        Assertions.assertEquals(expectedAuthorSort, sortAuthor.sortPosts(postsToSort, SortOrder.DESC));
     }
 
     @Nested
@@ -54,14 +53,14 @@ public class AuthorSortingTests {
         @DisplayName("ascending sort")
         void sortAscending_emptyInput() {
             List<UserPost> emptyList = Arrays.asList();
-            Assertions.assertEquals(emptyList, sortAuthorAscending.sortPosts(emptyList));
+            Assertions.assertEquals(emptyList, sortAuthor.sortPosts(emptyList, SortOrder.ASC));
         }
 
         @Test
         @DisplayName("descending sort")
         void sortDescending_emptyInput() {
             List<UserPost> emptyList = Arrays.asList();
-            Assertions.assertEquals(emptyList, sortAuthorDescending.sortPosts(emptyList));
+            Assertions.assertEquals(emptyList, sortAuthor.sortPosts(emptyList, SortOrder.DESC));
         }
     }
 
@@ -72,14 +71,14 @@ public class AuthorSortingTests {
         @DisplayName("ascending sort")
         void sortAscending_nullInput() {
             List<UserPost> nullInput = Arrays.asList();
-            Assertions.assertEquals(nullInput, sortAuthorAscending.sortPosts(null));
+            Assertions.assertEquals(nullInput, sortAuthor.sortPosts(null, SortOrder.ASC));
         }
 
         @Test
         @DisplayName("descending sort")
         void sortDescending_nullInput() {
             List<UserPost> nullInput = Arrays.asList();
-            Assertions.assertEquals(nullInput, sortAuthorDescending.sortPosts(null));
+            Assertions.assertEquals(nullInput, sortAuthor.sortPosts(null, SortOrder.DESC));
         }
     }
 }
