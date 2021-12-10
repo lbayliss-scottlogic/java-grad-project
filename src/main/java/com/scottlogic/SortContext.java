@@ -9,7 +9,7 @@ public class SortContext {
         this.sortingMethod = sortingMethod;
     }
 
-    public List<UserPost> sortPosts(List<UserPost> inputList) {
-        return sortingMethod.sort(inputList);
+    public List<UserPost> sortPosts(List<UserPost> inputList, SortOrder sortOrder) {
+        return sortingMethod.sort(inputList, sortOrder);
     }
 }
