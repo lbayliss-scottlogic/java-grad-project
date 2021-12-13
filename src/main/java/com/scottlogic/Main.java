@@ -1,10 +1,7 @@
 package com.scottlogic;
 
-import com.scottlogic.sort.SortAuthor;
-import com.scottlogic.sort.SortDate;
+import com.scottlogic.context.SortContext;
 import com.scottlogic.sort.SortContentLength;
-import com.scottlogic.sort.SortAuthorSurname;
-import com.scottlogic.sort.SortLikes;
 
 import static com.scottlogic.utils.UserPostData.getUserPosts;
 
@@ -20,6 +17,7 @@ public class Main {
     /**
      * Prints out user posts in either ascending/descending order (depending on which strategy is called)
      * @param userPosts The list of user posts to print out
+     * @param sortOrder direction in which to sort in
      */
     private static void sortUserPosts(List<UserPost> userPosts, SortOrder sortOrder) {
         SortContext sortContentLengthAscending = new SortContext(new SortContentLength());

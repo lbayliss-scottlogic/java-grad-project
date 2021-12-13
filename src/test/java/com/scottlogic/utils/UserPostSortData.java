@@ -1,4 +1,4 @@
-package com.scottlogic.SortingTests.utils;
+package com.scottlogic.utils;
 
 import com.scottlogic.UserPost;
 
