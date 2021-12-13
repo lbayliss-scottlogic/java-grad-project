@@ -16,7 +16,7 @@ public class SortLikes implements SortStrategy {
         if (inputList == null) {
             return Arrays.asList();
         }
-        if (sortOrder.equals(SortOrder.ASC)) {
+        if (SortOrder.ASC.equals(sortOrder)) {
             Collections.sort(inputList, Comparator.comparing(UserPost::getLikeCount));
         }
         else {

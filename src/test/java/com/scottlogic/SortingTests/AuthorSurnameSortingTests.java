@@ -57,15 +57,13 @@ public class AuthorSurnameSortingTests {
         @Test
         @DisplayName("ascending sort")
         void sortAscending_nullInput() {
-            List<UserPost> nullInput = Arrays.asList();
-            Assertions.assertEquals(nullInput, sortAuthorSurname.sortPosts(null, SortOrder.ASC));
+            Assertions.assertEquals(Arrays.asList(), sortAuthorSurname.sortPosts(null, SortOrder.ASC));
         }
 
         @Test
         @DisplayName("descending sort")
         void sortDescending_nullInput() {
-            List<UserPost> nullInput = Arrays.asList();
-            Assertions.assertEquals(nullInput, sortAuthorSurname.sortPosts(null, SortOrder.DESC));
+            Assertions.assertEquals(Arrays.asList(), sortAuthorSurname.sortPosts(null, SortOrder.DESC));
 
         }
     }

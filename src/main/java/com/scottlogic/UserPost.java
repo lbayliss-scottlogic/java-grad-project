@@ -22,7 +22,8 @@ public class UserPost {
     }
 
     public String getAuthorSurname() {
-        return author.split(" ")[author.split(" ").length - 1];
+        String[] authorNames = author.split(" ");
+        return authorNames[authorNames.length - 1];
     }
 
     public OffsetDateTime getDateTime() {

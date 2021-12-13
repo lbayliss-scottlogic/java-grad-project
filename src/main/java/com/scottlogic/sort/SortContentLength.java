@@ -15,7 +15,7 @@ public class SortContentLength implements SortStrategy {
         if (inputList == null) {
             return Arrays.asList();
         }
-        if (sortOrder.equals(SortOrder.ASC)) {
+        if (SortOrder.ASC.equals(sortOrder)) {
             Collections.sort(inputList, Comparator.comparingInt(post -> post.getContents().length()));
         }
         else {
