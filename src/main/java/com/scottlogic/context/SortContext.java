@@ -1,4 +1,8 @@
-package com.scottlogic;
+package com.scottlogic.context;
+
+import com.scottlogic.SortOrder;
+import com.scottlogic.UserPost;
+import com.scottlogic.strategy.SortStrategy;
 
 import java.util.List;
 

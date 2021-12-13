@@ -1,8 +1,8 @@
 package com.scottlogic.SortingTests;
 
-import com.scottlogic.SortContext;
+import com.scottlogic.context.SortContext;
 import com.scottlogic.SortOrder;
-import com.scottlogic.SortingTests.utils.UserPostSortData;
+import com.scottlogic.utils.UserPostSortData;
 import com.scottlogic.UserPost;
 import com.scottlogic.sort.SortLikes;
 import org.junit.jupiter.api.Assertions;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class LikeSortingTests {
+public class LikeCountSort {
 
     SortContext sortLikes = new SortContext(new SortLikes());
 

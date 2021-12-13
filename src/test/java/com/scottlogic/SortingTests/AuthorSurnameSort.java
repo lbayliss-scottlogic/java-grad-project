@@ -1,10 +1,10 @@
 package com.scottlogic.SortingTests;
 
-import com.scottlogic.SortContext;
+import com.scottlogic.context.SortContext;
 import com.scottlogic.SortOrder;
-import com.scottlogic.SortingTests.utils.UserPostSortData;
-import com.scottlogic.UserPost;
 import com.scottlogic.sort.SortAuthorSurname;
+import com.scottlogic.utils.UserPostSortData;
+import com.scottlogic.UserPost;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class AuthorSurnameSortingTests {
+public class AuthorSurnameSort {
 
     SortContext sortAuthorSurname = new SortContext(new SortAuthorSurname());
 
