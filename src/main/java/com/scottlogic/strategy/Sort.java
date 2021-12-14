@@ -5,6 +5,6 @@ import com.scottlogic.UserPost;
 
 import java.util.List;
 
-public interface SortStrategy {
+public interface Sort {
     List<UserPost> sort(List<UserPost> inputList, SortOrder sortOrder);
 }

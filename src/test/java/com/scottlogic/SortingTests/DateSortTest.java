@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class DateSort {
+public class DateSortTest {
 
     SortContext sortDate = new SortContext(new SortDate());
 

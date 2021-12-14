@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class AuthorSurnameSort {
+public class AuthorSurnameSortTest {
 
     SortContext sortAuthorSurname = new SortContext(new SortAuthorSurname());
 

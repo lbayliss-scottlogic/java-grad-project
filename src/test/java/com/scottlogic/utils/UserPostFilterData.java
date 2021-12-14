@@ -25,15 +25,29 @@ public class UserPostFilterData {
             "My name is Jeoff", 9);
 
     private static UserPost userPost5 = new UserPost("This funky-name",
-            OffsetDateTime.of(2001, 1, 1, 1, 1, 1, 1, ZoneOffset.UTC),
+            OffsetDateTime.of(2001, 1, 1, 1, 1, 1, 0, ZoneOffset.UTC),
             "funky funk funk", 10);
     private static UserPost userPost6 = new UserPost("steve madden",
-            OffsetDateTime.of(2001, 1, 1, 1, 1, 1, 2, ZoneOffset.UTC),
+            OffsetDateTime.of(2001, 1, 1, 1, 1, 1, 0, ZoneOffset.UTC),
             "funky funky funky", 11);
 
-    public static List<UserPost> getUnfilteredData () { return Arrays.asList(userPost1, userPost2, userPost3, userPost4, userPost5, userPost6); }
+    public static List<UserPost> getUnfilteredData () {
+        return Arrays.asList(userPost1, userPost2, userPost3, userPost4, userPost5, userPost6); }
 
     public static List<UserPost> getFilteredAuthor_Steve() { return Arrays.asList(userPost3, userPost4); }
 
     public static List<UserPost> getFilteredAuthor_steve() { return Arrays.asList(userPost6); }
+
+    public static List<UserPost> getFilteredDateEquals() { return Arrays.asList(userPost5, userPost6); }
+
+    public static List<UserPost> getFilteredDateBetween() { return Arrays.asList(userPost1, userPost2, userPost3); }
+
+    public static List<UserPost> getFilteredDateBetween_reversedInput() {
+        return Arrays.asList(userPost1, userPost2, userPost3); }
+
+    public static List<UserPost> getFilteredDateBetween_equalsStartDate() {
+        return Arrays.asList(userPost1, userPost2, userPost3); }
+
+    public static List<UserPost> getFilteredDateBetween_equalsEndDate() {
+        return Arrays.asList(userPost1, userPost2, userPost3); }
 }

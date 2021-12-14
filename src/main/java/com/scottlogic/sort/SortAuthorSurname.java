@@ -1,14 +1,14 @@
 package com.scottlogic.sort;
 
 import com.scottlogic.SortOrder;
-import com.scottlogic.strategy.SortStrategy;
+import com.scottlogic.strategy.Sort;
 import com.scottlogic.UserPost;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class SortAuthorSurname implements SortStrategy {
+public class SortAuthorSurname implements Sort {
     /**
      * Split the input-list into two categories: (1) names with only 1 name (forename) and (2) names with 2 or more,
      * then sort each category and then append (2) onto the back of (1) for ascending sort

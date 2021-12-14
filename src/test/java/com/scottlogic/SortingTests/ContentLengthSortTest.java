@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class ContentLengthSort {
+public class ContentLengthSortTest {
 
     SortContext sortContentLength = new SortContext(new SortContentLength());
 
