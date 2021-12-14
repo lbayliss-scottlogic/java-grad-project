@@ -2,14 +2,14 @@ package com.scottlogic.context;
 
 import com.scottlogic.SortOrder;
 import com.scottlogic.UserPost;
-import com.scottlogic.strategy.SortStrategy;
+import com.scottlogic.strategy.Sort;
 
 import java.util.List;
 
 public class SortContext {
-    public SortStrategy sortingMethod;
+    public Sort sortingMethod;
 
-    public SortContext(SortStrategy sortingMethod) {
+    public SortContext(Sort sortingMethod) {
         this.sortingMethod = sortingMethod;
     }
 
