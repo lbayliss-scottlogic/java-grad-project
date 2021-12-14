@@ -1,8 +1,6 @@
-package com.scottlogic.FilterTests;
+package com.scottlogic.filter;
 
 import com.scottlogic.UserPost;
-import com.scottlogic.filter.FilterBetweenDates;
-import com.scottlogic.filter.FilterDateEquals;
 import com.scottlogic.utils.UserPostFilterData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class DateFiltersTest {
+public class FilterDateTest {
 
     FilterDateEquals dateEqualsFilterTest = new FilterDateEquals();
     FilterBetweenDates dateBetweenFilterTest = new FilterBetweenDates();

@@ -1,7 +1,6 @@
-package com.scottlogic.FilterTests;
+package com.scottlogic.filter;
 
 import com.scottlogic.UserPost;
-import com.scottlogic.filter.FilterAuthor;
 import com.scottlogic.utils.UserPostFilterData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -9,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class AuthorFilterTest {
+public class FilterAuthorTest {
 
     FilterAuthor filterAuthorTest = new FilterAuthor();
 
