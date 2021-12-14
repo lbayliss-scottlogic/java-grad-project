@@ -1,4 +1,4 @@
-package com.scottlogic.strategy;
+package com.scottlogic.sort;
 
 import com.scottlogic.SortOrder;
 import com.scottlogic.UserPost;

@@ -1,4 +1,4 @@
-package com.scottlogic.strategy;
+package com.scottlogic.filter;
 
 import com.scottlogic.UserPost;
 

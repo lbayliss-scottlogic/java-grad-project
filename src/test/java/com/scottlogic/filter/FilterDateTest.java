@@ -7,12 +7,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class FilterDateTest {
 
-    FilterDateEquals dateEqualsFilterTest = new FilterDateEquals();
-    FilterBetweenDates dateBetweenFilterTest = new FilterBetweenDates();
+    FilterDateEquals filterDateEquals = new FilterDateEquals();
+    FilterBetweenDates filterBetweenDates = new FilterBetweenDates();
 
     @Nested
     @DisplayName("Date equals filter")
@@ -23,7 +24,19 @@ public class FilterDateTest {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
             List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredDateEquals();
             String filterDate = "2001-01-01T01:01:01Z";
-            Assertions.assertEquals(expectedFilteredList, dateEqualsFilterTest.filter(postsToFilter, filterDate));
+            Assertions.assertEquals(expectedFilteredList, filterDateEquals.filter(postsToFilter, filterDate));
+        }
+
+        @Test
+        @DisplayName("Empty input")
+        void filterDateEquals_emptyInput() {
+            Assertions.assertEquals(Arrays.asList(), filterDateEquals.filter(Arrays.asList(), "steve"));
+        }
+
+        @Test
+        @DisplayName("Null input")
+        void filterDateEquals_nullInput() {
+            Assertions.assertEquals(Arrays.asList(), filterDateEquals.filter(null, "steve"));
         }
     }
 
@@ -36,7 +49,7 @@ public class FilterDateTest {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
             List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredDateBetween();
             String filterDate = "2016-01-01T01:01:01Z 2021-01-01T01:01:01Z";
-            Assertions.assertEquals(expectedFilteredList, dateBetweenFilterTest.filter(postsToFilter, filterDate));
+            Assertions.assertEquals(expectedFilteredList, filterBetweenDates.filter(postsToFilter, filterDate));
         }
 
         @Test
@@ -45,7 +58,7 @@ public class FilterDateTest {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
             List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredDateBetween_reversedInput();
             String filterDate = "2021-01-01T01:01:01Z 2016-01-01T01:01:01Z";
-            Assertions.assertEquals(expectedFilteredList, dateBetweenFilterTest.filter(postsToFilter, filterDate));
+            Assertions.assertEquals(expectedFilteredList, filterBetweenDates.filter(postsToFilter, filterDate));
         }
 
         @Test
@@ -54,7 +67,7 @@ public class FilterDateTest {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
             List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredDateBetween_equalsStartDate();
             String filterDate = "2020-01-03T07:12:03Z 2021-01-01T01:01:01Z";
-            Assertions.assertEquals(expectedFilteredList, dateBetweenFilterTest.filter(postsToFilter, filterDate));
+            Assertions.assertEquals(expectedFilteredList, filterBetweenDates.filter(postsToFilter, filterDate));
         }
 
         @Test
@@ -63,7 +76,19 @@ public class FilterDateTest {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
             List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredDateBetween_equalsEndDate();
             String filterDate = "2016-01-01T01:01:01Z 2021-03-12T13:22:12Z";
-            Assertions.assertEquals(expectedFilteredList, dateBetweenFilterTest.filter(postsToFilter, filterDate));
+            Assertions.assertEquals(expectedFilteredList, filterBetweenDates.filter(postsToFilter, filterDate));
+        }
+
+        @Test
+        @DisplayName("Empty input")
+        void filterDatesBetween_emptyInput() {
+            Assertions.assertEquals(Arrays.asList(), filterBetweenDates.filter(Arrays.asList(), "steve"));
+        }
+
+        @Test
+        @DisplayName("Null input")
+        void filterDateBetween_nullInput() {
+            Assertions.assertEquals(Arrays.asList(), filterBetweenDates.filter(null, "steve"));
         }
     }
 }
