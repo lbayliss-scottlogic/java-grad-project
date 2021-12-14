@@ -57,7 +57,6 @@ public class FilterDateTest {
         void filterDateBetween_reversedInputs() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
             List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredDateBetween_reversedInput();
-            String filterDate = "2021-01-01T01:01:01Z 2016-01-01T01:01:01Z";
             Assertions.assertEquals(expectedFilteredList, filterBetweenDates.filter(postsToFilter, filterDate));
         }
 
