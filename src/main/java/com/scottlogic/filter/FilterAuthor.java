@@ -8,8 +8,14 @@ import java.util.List;
 
 public class FilterAuthor implements Filter {
 
+    private String filterCriteria;
+
+    public FilterAuthor(String filterBy) {
+        filterCriteria = filterBy;
+    }
+
     @Override
-    public List<UserPost> filter(List<UserPost> inputList, String filterCriteria) {
+    public List<UserPost> filter(List<UserPost> inputList) {
         if (inputList == null) {
             return Arrays.asList();
         }

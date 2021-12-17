@@ -11,29 +11,28 @@ import java.util.List;
 
 public class FilterAuthorTest {
 
-    FilterAuthor filterAuthor = new FilterAuthor();
-
     @Test
     @DisplayName("Functionality with 'Steve'")
     void filterAuthorFunctionality_Steve() {
+        FilterAuthor filterAuthor = new FilterAuthor("Steve");
         List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
         List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredAuthor_Steve();
-        Assertions.assertEquals(expectedFilteredList, filterAuthor.filter(postsToFilter, "Steve"));
+        Assertions.assertEquals(expectedFilteredList, filterAuthor.filter(postsToFilter));
     }
 
     @Test
     @DisplayName("Functionality with 'steve'")
     void filterAuthorFunctionality_steve() {
+        FilterAuthor filterAuthor = new FilterAuthor("steve");
         List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
         List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredAuthor_steve();
-        Assertions.assertEquals(expectedFilteredList, filterAuthor.filter(postsToFilter, "steve"));
+        Assertions.assertEquals(expectedFilteredList, filterAuthor.filter(postsToFilter));
     }
-
-
 
     @Test
     @DisplayName("Null input")
     void filterAuthor_nullInput() {
-        Assertions.assertEquals(Arrays.asList(), filterAuthor.filter(null, "steve"));
+        FilterAuthor filterAuthor = new FilterAuthor("steve");
+        Assertions.assertEquals(Arrays.asList(), filterAuthor.filter(null));
     }
 }

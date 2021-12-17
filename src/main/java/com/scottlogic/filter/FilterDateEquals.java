@@ -9,8 +9,14 @@ import java.util.List;
 
 public class FilterDateEquals implements Filter {
 
+    private String filterCriteria;
+
+    public FilterDateEquals(String filterBy) {
+        filterCriteria = filterBy;
+    }
+
     @Override
-    public List<UserPost> filter(List<UserPost> inputList, String filterCriteria) {
+    public List<UserPost> filter(List<UserPost> inputList) {
         if (inputList == null || inputList.isEmpty()) {
             return Arrays.asList();
         }

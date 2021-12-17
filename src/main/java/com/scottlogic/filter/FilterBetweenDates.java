@@ -8,8 +8,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FilterBetweenDates implements Filter {
+
+    private String filterCriteria;
+
+    public FilterBetweenDates(String filterBy) {
+        filterCriteria = filterBy;
+    }
+
     @Override
-    public List<UserPost> filter(List<UserPost> inputList, String filterCriteria) {
+    public List<UserPost> filter(List<UserPost> inputList) {
         if (inputList == null || inputList.isEmpty()) {
             return Arrays.asList();
         }

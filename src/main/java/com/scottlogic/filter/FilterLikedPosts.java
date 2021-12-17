@@ -7,8 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FilterLikedPosts implements Filter {
+
     @Override
-    public List<UserPost> filter(List<UserPost> inputList, String filterCriteria) {
+    public List<UserPost> filter(List<UserPost> inputList) {
         if (inputList == null) {
             return Arrays.asList();
         }

@@ -18,18 +18,18 @@ public class FilterLikedPostsTest {
     void filterLikedPostsFunctionality() {
         List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
         List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredLikedPosts();
-        Assertions.assertEquals(expectedFilteredList, filterLikedPosts.filter(postsToFilter, null));
+        Assertions.assertEquals(expectedFilteredList, filterLikedPosts.filter(postsToFilter));
     }
 
     @Test
     @DisplayName("Empty input")
     void filterLikedPosts_emptyInput() {
-        Assertions.assertEquals(Arrays.asList(), filterLikedPosts.filter(Arrays.asList(), "steve"));
+        Assertions.assertEquals(Arrays.asList(), filterLikedPosts.filter(Arrays.asList()));
     }
 
     @Test
     @DisplayName("Null input")
     void filterLikedPosts_nullInput() {
-        Assertions.assertEquals(Arrays.asList(), filterLikedPosts.filter(null, "steve"));
+        Assertions.assertEquals(Arrays.asList(), filterLikedPosts.filter(null));
     }
 }
