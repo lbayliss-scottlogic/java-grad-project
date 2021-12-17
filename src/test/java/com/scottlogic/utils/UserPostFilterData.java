@@ -14,7 +14,7 @@ public class UserPostFilterData {
 
     private static UserPost userPost2 = new UserPost("Matt Damon",
             OffsetDateTime.of(2020, 1, 3, 8, 53, 34, 0, ZoneOffset.UTC),
-            "How you like them apples?!", 1);
+            "How you like them apples?1", 0);
 
     private static UserPost userPost3 = new UserPost("Steve Madden",
             OffsetDateTime.of(2020, 3, 12, 13, 22, 12, 0, ZoneOffset.UTC),
@@ -26,10 +26,10 @@ public class UserPostFilterData {
 
     private static UserPost userPost5 = new UserPost("This funky-name",
             OffsetDateTime.of(2001, 1, 1, 1, 1, 1, 0, ZoneOffset.UTC),
-            "funky funk funk", 10);
+            "funky funk funk", 0);
     private static UserPost userPost6 = new UserPost("steve madden",
             OffsetDateTime.of(2001, 1, 1, 1, 1, 1, 0, ZoneOffset.UTC),
-            "funky funky funky", 11);
+            "Funky Funky funky", 11);
 
     public static List<UserPost> getUnfilteredData () {
         return Arrays.asList(userPost1, userPost2, userPost3, userPost4, userPost5, userPost6); }
@@ -50,4 +50,23 @@ public class UserPostFilterData {
 
     public static List<UserPost> getFilteredDateBetween_equalsEndDate() {
         return Arrays.asList(userPost1, userPost2, userPost3); }
+
+    public static List<UserPost> getFilteredContentKeyword_you() { return Arrays.asList(userPost2); }
+
+    public static List<UserPost> getFilteredContentKeyword_You() { return Arrays.asList(userPost1); }
+
+    public static List<UserPost> getFilteredContentKeyword_yuo() { return Arrays.asList(); }
+
+    public static List<UserPost> getFilteredContentKeyword_Funky_funky() { return Arrays.asList(userPost6); }
+
+    public static List<UserPost> getFilteredContentKeyword_number_1() { return Arrays.asList(userPost2); }
+
+    public static List<UserPost> getFilteredContentKeyword_special_character() { return Arrays.asList(userPost1, userPost2); }
+
+    public static List<UserPost> getFilteredLikedPosts() {
+        return Arrays.asList(userPost1, userPost3, userPost4, userPost6); }
+
+    public static List<UserPost> getFiltered_authorMatt_OR_keywordfunky() {
+        return Arrays.asList(userPost2, userPost5, userPost6);
+    }
 }

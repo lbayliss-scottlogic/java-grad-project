@@ -6,13 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FilterAuthor implements Filter {
-
-    private String filterCriteria;
-
-    public FilterAuthor(String filterBy) {
-        filterCriteria = filterBy;
-    }
+public class FilterLikedPosts implements Filter {
 
     @Override
     public List<UserPost> filter(List<UserPost> inputList) {
@@ -20,7 +14,7 @@ public class FilterAuthor implements Filter {
             return Arrays.asList();
         }
         List<UserPost> outputList = new ArrayList<>(inputList);
-        outputList.removeIf(a -> !a.getAuthor().contains(filterCriteria));
+        outputList.removeIf(a -> !(a.getLikeCount() > 0));
         return outputList;
     }
 }

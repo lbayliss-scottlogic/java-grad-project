@@ -1,7 +1,6 @@
 package com.scottlogic.sort;
 
 import com.scottlogic.SortOrder;
-import com.scottlogic.strategy.Sort;
 import com.scottlogic.UserPost;
 
 import java.util.*;

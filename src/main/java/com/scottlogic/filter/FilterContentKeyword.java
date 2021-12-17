@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FilterAuthor implements Filter {
+public class FilterContentKeyword implements Filter {
 
     private String filterCriteria;
 
-    public FilterAuthor(String filterBy) {
+    public FilterContentKeyword(String filterBy) {
         filterCriteria = filterBy;
     }
 
@@ -20,7 +20,7 @@ public class FilterAuthor implements Filter {
             return Arrays.asList();
         }
         List<UserPost> outputList = new ArrayList<>(inputList);
-        outputList.removeIf(a -> !a.getAuthor().contains(filterCriteria));
+        outputList.removeIf(a -> !a.getContents().contains(filterCriteria));
         return outputList;
     }
 }
