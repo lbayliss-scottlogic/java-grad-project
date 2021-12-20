@@ -27,6 +27,7 @@ public class UserPostFilterData {
     private static UserPost userPost5 = new UserPost("This funky-name",
             OffsetDateTime.of(2001, 1, 1, 1, 1, 1, 0, ZoneOffset.UTC),
             "funky funk funk", 0);
+
     private static UserPost userPost6 = new UserPost("steve madden",
             OffsetDateTime.of(2001, 1, 1, 1, 1, 1, 0, ZoneOffset.UTC),
             "Funky Funky funky", 11);
@@ -68,5 +69,119 @@ public class UserPostFilterData {
 
     public static List<UserPost> getFiltered_authorMatt_OR_keywordfunky() {
         return Arrays.asList(userPost2, userPost5, userPost6);
+    }
+
+    public static List<UserPost> getFiltered_authorMatt_OR_likedPosts() {
+        return Arrays.asList(userPost2, userPost1, userPost3, userPost4, userPost6);
+    }
+
+    public static List<UserPost> getFiltered_authorMatt_OR_date() {
+        return Arrays.asList(userPost2, userPost1, userPost3);
+    }
+
+    public static List<UserPost> getFiltered_authorMatt_OR_authorFunky() {
+        return Arrays.asList(userPost2, userPost5);
+    }
+
+    public static List<UserPost> getFilteredBetweenDates_OR_authorMick() {
+        return Arrays.asList(userPost1, userPost2, userPost3);
+    }
+
+    public static List<UserPost> getFilteredBetweenDates_OR_keywordFunky() {
+        return Arrays.asList(userPost1, userPost2, userPost3, userPost5, userPost6);
+    }
+
+    public static List<UserPost> getFilteredBetweenDates_OR_likedPosts() {
+        return Arrays.asList(userPost1, userPost2, userPost3, userPost4, userPost6);
+    }
+
+    public static List<UserPost> getFilteredBetweenDates_OR_betweenDates() {
+        return Arrays.asList(userPost1, userPost2, userPost3, userPost5, userPost6);
+    }
+
+    public static List<UserPost> getFilteredLikedPosts_OR_authorMick() {
+        return Arrays.asList(userPost1, userPost3, userPost4, userPost6);
+    }
+
+    public static List<UserPost> getFilteredLikedPosts_OR_keywordFunky() {
+        return Arrays.asList(userPost1, userPost3, userPost4, userPost6, userPost5);
+    }
+
+    public static List<UserPost> getFilteredLikedPosts_OR_dateBetween() {
+        return Arrays.asList(userPost1, userPost3, userPost4, userPost6, userPost5);
+    }
+
+    public static List<UserPost> getFilteredKeywordYou_OR_AuthorMick() {
+        return Arrays.asList(userPost2, userPost1);
+    }
+
+    public static List<UserPost> getFilteredKeywordYou_OR_likedPosts() {
+        return Arrays.asList(userPost2, userPost1, userPost3, userPost4, userPost6);
+    }
+
+    public static List<UserPost> getFilteredKeywordYou_OR_dates() {
+        return Arrays.asList(userPost2, userPost5, userPost6);
+    }
+
+    public static List<UserPost> getFilteredKeywordYou_OR_keywordJeoff() {
+        return Arrays.asList(userPost2, userPost4);
+    }
+
+    public static List<UserPost> getFiltered_authorMatt_AND_keyword_you() {
+        return Arrays.asList(userPost2);
+    }
+
+    public static List<UserPost> getFiltered_authorMatt_AND_likedPosts() {
+        return Arrays.asList();
+    }
+
+    public static List<UserPost> getFiltered_authorMatt_AND_date() {
+        return Arrays.asList(userPost2);
+    }
+
+    public static List<UserPost> getFiltered_authorMatt_AND_authorFunky() {
+        return Arrays.asList();
+    }
+
+    public static List<UserPost> getFilteredBetweenDates_AND_keywordYou() {
+        return Arrays.asList(userPost2);
+    }
+
+    public static List<UserPost> getFilteredBetweenDates_AND_likedPosts() {
+        return Arrays.asList(userPost1, userPost3);
+    }
+
+    public static List<UserPost> getFilteredBetweenDates_AND_betweenDates() {
+        return Arrays.asList();
+    }
+
+    public static List<UserPost> getFilteredBetweenDates_AND_authorFunky() {
+        return Arrays.asList();
+    }
+
+    public static List<UserPost> getFilteredLikedPosts_AND_authorSteve() {
+        return Arrays.asList(userPost3, userPost4);
+    }
+
+    public static List<UserPost> getFilteredLikedPosts_AND_betweenDates() {
+        return Arrays.asList(userPost1, userPost3);
+    }
+
+    public static List<UserPost> getFilteredLikedPosts_AND_keywordFunky() { return Arrays.asList(userPost6); }
+
+    public static List<UserPost> getFilteredKeywordLi_AND_authorSteve() {
+        return Arrays.asList(userPost3);
+    }
+
+    public static List<UserPost> getFilteredKeywordLi_AND_betweenDates() {
+        return Arrays.asList(userPost1, userPost2, userPost3);
+    }
+
+    public static List<UserPost> getFilteredKeywordLi_AND_keywordFunky() {
+        return Arrays.asList();
+    }
+
+    public static List<UserPost> getFilteredKeywordLi_AND_likedPosts() {
+        return Arrays.asList(userPost1, userPost3);
     }
 }
