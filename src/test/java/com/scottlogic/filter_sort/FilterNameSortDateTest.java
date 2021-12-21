@@ -41,6 +41,16 @@ public class FilterNameSortDateTest {
             FilterNameSortDate filterNameSortDate = new FilterNameSortDate(filterAuthor, new SortDate(SortOrder.DESC));
             Assertions.assertEquals(expectedFilteredList, filterNameSortDate.filter(postsToFilter));
         }
+
+        @Test
+        @DisplayName("No filter matches")
+        void filterNoFilterMatches_sortDateAsc() {
+            List<UserPost> postsToFilter = UserPostFilterSortData.getUnfilteredData();
+            List<UserPost> expectedFilteredList = Arrays.asList();
+            FilterAuthor filterAuthor = new FilterAuthor("Funky bob man");
+            FilterNameSortDate filterNameSortDate = new FilterNameSortDate(filterAuthor, new SortDate(SortOrder.ASC));
+            Assertions.assertEquals(expectedFilteredList, filterNameSortDate.filter(postsToFilter));
+        }
     }
 
     @Test
@@ -58,12 +68,10 @@ public class FilterNameSortDateTest {
     }
 
     @Test
-    @DisplayName("No filter matches")
-    void filterNoFilterMatches_sortDateAsc() {
+    @DisplayName("Null filter input")
+    void filterAuthorSteve_sortDateAsc_nullFilter() {
         List<UserPost> postsToFilter = UserPostFilterSortData.getUnfilteredData();
-        List<UserPost> expectedFilteredList = Arrays.asList();
-        FilterAuthor filterAuthor = new FilterAuthor("Funky bob man");
-        FilterNameSortDate filterNameSortDate = new FilterNameSortDate(filterAuthor, new SortDate(SortOrder.ASC));
-        Assertions.assertEquals(expectedFilteredList, filterNameSortDate.filter(postsToFilter));
+        FilterNameSortDate filterNameSortDate = new FilterNameSortDate(null, new SortDate(SortOrder.ASC));
+        Assertions.assertEquals(null, filterNameSortDate.filter(postsToFilter));
     }
 }

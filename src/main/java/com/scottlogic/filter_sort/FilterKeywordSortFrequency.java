@@ -32,12 +32,10 @@ public class FilterKeywordSortFrequency implements Filter {
 
     @Override
     public List<UserPost> filter(List<UserPost> inputList) {
-        if (inputList == null) {
+        if (inputList == null || keyword == null || sortOrder == null) {
             return null;
         }
 
-        //HashMap<UserPost, Integer> filteredList = new HashMap<UserPost, Integer>();
-        //LinkedHashMap preserve the ordering of elements in which they are inserted
         Map<UserPost, Integer> filteredList = new HashMap<>();
 
         for (UserPost userPost : inputList) {
@@ -54,10 +52,18 @@ public class FilterKeywordSortFrequency implements Filter {
 
         LinkedHashMap<UserPost, Integer> sortedList = new LinkedHashMap<>();
 
-        filteredList.entrySet()
-                .stream()
-                .sorted(Entry.comparingByValue())
-                .forEachOrdered(a -> sortedList.put(a.getKey(), a.getValue()));
+        if (sortOrder.equals(SortOrder.DESC)) {
+            filteredList.entrySet()
+                    .stream()
+                    .sorted(Entry.comparingByValue(Comparator.reverseOrder()))
+                    .forEachOrdered(a -> sortedList.put(a.getKey(), a.getValue()));
+        }
+        else {
+            filteredList.entrySet()
+                    .stream()
+                    .sorted(Entry.comparingByValue())
+                    .forEachOrdered(a -> sortedList.put(a.getKey(), a.getValue()));
+        }
 
         return new ArrayList<>(sortedList.keySet());
     }

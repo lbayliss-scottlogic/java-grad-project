@@ -20,7 +20,7 @@ public class FilterNameSortDate implements Filter {
 
     @Override
     public List<UserPost> filter(List<UserPost> inputList) {
-        if (inputList == null) {
+        if (inputList == null || filterAuthor == null || sortDate == null) {
             return null;
         }
         List<UserPost> outputList = filterAuthor.filter(inputList);
