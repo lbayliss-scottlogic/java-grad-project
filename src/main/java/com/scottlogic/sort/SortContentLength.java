@@ -9,8 +9,14 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SortContentLength implements Sort {
+
+    private SortOrder sortOrder;
+
+    public SortContentLength(SortOrder orderToSort) {
+        sortOrder = orderToSort;
+    }
     @Override
-    public List<UserPost> sort(List<UserPost> inputList, SortOrder sortOrder) {
+    public List<UserPost> sort(List<UserPost> inputList) {
         if (inputList == null) {
             return Arrays.asList();
         }

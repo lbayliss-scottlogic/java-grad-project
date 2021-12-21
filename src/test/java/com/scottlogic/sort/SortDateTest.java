@@ -13,14 +13,15 @@ import java.util.List;
 
 public class SortDateTest {
 
-    SortDate sortDate = new SortDate();
+    SortDate sortDateAsc = new SortDate(SortOrder.ASC);
+    SortDate sortDateDesc = new SortDate(SortOrder.DESC);
 
     @Test
     @DisplayName("Ascending functionality")
     void sortDateAscending() {
         List<UserPost> postsToSort = UserPostSortData.getUnsortedList();
         List<UserPost> expectedDateSort = UserPostSortData.getSortedDateAscendingList();
-        Assertions.assertEquals(expectedDateSort, sortDate.sort(postsToSort, SortOrder.ASC));
+        Assertions.assertEquals(expectedDateSort, sortDateAsc.sort(postsToSort));
     }
 
     @Test
@@ -28,7 +29,7 @@ public class SortDateTest {
     void sortDateDescending() {
         List<UserPost> postsToSort = UserPostSortData.getUnsortedList();
         List<UserPost> expectedDateSort = UserPostSortData.getSortedDateDescendingList();
-        Assertions.assertEquals(expectedDateSort, sortDate.sort(postsToSort, SortOrder.DESC));
+        Assertions.assertEquals(expectedDateSort, sortDateDesc.sort(postsToSort));
     }
 
     @Nested
@@ -38,14 +39,14 @@ public class SortDateTest {
         @DisplayName("ascending sort")
         void sortAscending_emptyInput() {
             List<UserPost> emptyList = Arrays.asList();
-            Assertions.assertEquals(emptyList, sortDate.sort(emptyList, SortOrder.ASC));
+            Assertions.assertEquals(emptyList, sortDateAsc.sort(emptyList));
         }
 
         @Test
         @DisplayName("descending sort")
         void sortDescending_emptyInput() {
             List<UserPost> emptyList = Arrays.asList();
-            Assertions.assertEquals(emptyList, sortDate.sort(emptyList, SortOrder.DESC));
+            Assertions.assertEquals(emptyList, sortDateDesc.sort(emptyList));
         }
     }
 
@@ -55,13 +56,13 @@ public class SortDateTest {
         @Test
         @DisplayName("ascending sort")
         void sortAscending_nullInput() {
-            Assertions.assertEquals(Arrays.asList(), sortDate.sort(null, SortOrder.ASC));
+            Assertions.assertEquals(Arrays.asList(), sortDateAsc.sort(null));
         }
 
         @Test
         @DisplayName("descending sort")
         void sortDescending_nullInput() {
-            Assertions.assertEquals(Arrays.asList(), sortDate.sort(null, SortOrder.DESC));
+            Assertions.assertEquals(Arrays.asList(), sortDateDesc.sort(null));
         }
     }
 }

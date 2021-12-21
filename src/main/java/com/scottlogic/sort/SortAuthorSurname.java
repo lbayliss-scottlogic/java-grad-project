@@ -8,14 +8,20 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SortAuthorSurname implements Sort {
+
+    private SortOrder sortOrder;
+
+    public SortAuthorSurname(SortOrder orderToSort) {
+        sortOrder = orderToSort;
+    }
+
     /**
      * Split the input-list into two categories: (1) names with only 1 name (forename) and (2) names with 2 or more,
      * then sort each category and then append (2) onto the back of (1) for ascending sort
      * @param inputList List of user post (author, date, content, likes) that need sorting
-     * @param sortOrder Direction in which way to sort - as an enum - either descending or ascending
      */
     @Override
-    public List<UserPost> sort(List<UserPost> inputList, SortOrder sortOrder) {
+    public List<UserPost> sort(List<UserPost> inputList) {
         if (inputList == null) {
             return Arrays.asList();
         }

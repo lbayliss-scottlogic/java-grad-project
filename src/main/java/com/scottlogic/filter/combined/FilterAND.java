@@ -1,6 +1,7 @@
-package com.scottlogic.filter;
+package com.scottlogic.filter.combined;
 
 import com.scottlogic.UserPost;
+import com.scottlogic.filter.Filter;
 
 import java.util.ArrayList;
 import java.util.List;

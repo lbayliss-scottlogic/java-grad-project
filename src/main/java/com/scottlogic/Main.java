@@ -19,8 +19,8 @@ public class Main {
      * @param sortOrder direction in which to sort in
      */
     private static void sortUserPosts(List<UserPost> userPosts, SortOrder sortOrder) {
-        SortContentLength sortContentLengthAscending = new SortContentLength();
-        sortContentLengthAscending.sort(userPosts, SortOrder.ASC);
+        SortContentLength sortContentLengthAscending = new SortContentLength(SortOrder.ASC);
+        sortContentLengthAscending.sort(userPosts);
         System.out.println("Posts ascendingly-sorted with content length Strategy: ");
         for(UserPost userPost : userPosts) {
             System.out.println(userPost + "\n");

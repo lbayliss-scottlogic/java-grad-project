@@ -1,0 +1,69 @@
+package com.scottlogic.filter_sort;
+
+import com.scottlogic.SortOrder;
+import com.scottlogic.UserPost;
+import com.scottlogic.filter.Filter;
+import com.scottlogic.filter.FilterAuthor;
+import com.scottlogic.sort.Sort;
+import com.scottlogic.sort.SortDate;
+import com.scottlogic.utils.UserPostFilterData;
+import com.scottlogic.utils.UserPostFilterSortData;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class FilterNameSortDateTest {
+
+    FilterAuthor filterAuthor = new FilterAuthor("Steve");
+
+    @Nested
+    @DisplayName("Author name = 'Steve' and ...")
+    class FilterNameSortDate_functionality {
+
+        @Test
+        @DisplayName("date ascending")
+        void filterAuthorSteve_sortDateAsc() {
+            List<UserPost> postsToFilter = UserPostFilterSortData.getUnfilteredData();
+            List<UserPost> expectedFilteredList = UserPostFilterSortData.getFilteredNameSteve_sortedDateAsc();
+            FilterNameSortDate filterNameSortDate = new FilterNameSortDate(filterAuthor, new SortDate(SortOrder.ASC));
+            Assertions.assertEquals(expectedFilteredList, filterNameSortDate.filter(postsToFilter));
+        }
+
+        @Test
+        @DisplayName("date descending")
+        void filterAuthorSteve_sortDateDesc() {
+            List<UserPost> postsToFilter = UserPostFilterSortData.getUnfilteredData();
+            List<UserPost> expectedFilteredList = UserPostFilterSortData.getFilteredNameSteve_sortedDateDesc();
+            FilterNameSortDate filterNameSortDate = new FilterNameSortDate(filterAuthor, new SortDate(SortOrder.DESC));
+            Assertions.assertEquals(expectedFilteredList, filterNameSortDate.filter(postsToFilter));
+        }
+    }
+
+    @Test
+    @DisplayName("Empty input list")
+    void filterAuthorSteve_sortDateAsc_emptyInput() {
+        FilterNameSortDate filterNameSortDate = new FilterNameSortDate(filterAuthor, new SortDate(SortOrder.ASC));
+        Assertions.assertEquals(Arrays.asList(), filterNameSortDate.filter(Arrays.asList()));
+    }
+
+    @Test
+    @DisplayName("Null input list")
+    void filterAuthorSteve_sortDateAsc_nullInput() {
+        FilterNameSortDate filterNameSortDate = new FilterNameSortDate(filterAuthor, new SortDate(SortOrder.ASC));
+        Assertions.assertEquals(null, filterNameSortDate.filter(null));
+    }
+
+    @Test
+    @DisplayName("No filter matches")
+    void filterNoFilterMatches_sortDateAsc() {
+        List<UserPost> postsToFilter = UserPostFilterSortData.getUnfilteredData();
+        List<UserPost> expectedFilteredList = Arrays.asList();
+        FilterAuthor filterAuthor = new FilterAuthor("Funky bob man");
+        FilterNameSortDate filterNameSortDate = new FilterNameSortDate(filterAuthor, new SortDate(SortOrder.ASC));
+        Assertions.assertEquals(expectedFilteredList, filterNameSortDate.filter(postsToFilter));
+    }
+}
