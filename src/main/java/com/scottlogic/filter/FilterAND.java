@@ -3,6 +3,7 @@ package com.scottlogic.filter;
 import com.scottlogic.UserPost;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FilterAND implements Filter {
@@ -17,6 +18,9 @@ public class FilterAND implements Filter {
 
     @Override
     public List<UserPost> filter(List<UserPost> inputList) {
+        if (inputList == null) {
+            return Arrays.asList();
+        }
         List<UserPost> outputList1 = firstFilter.filter(inputList);
         List<UserPost> outputList2 = secondFilter.filter(inputList);
         List<UserPost> andList = new ArrayList<>();

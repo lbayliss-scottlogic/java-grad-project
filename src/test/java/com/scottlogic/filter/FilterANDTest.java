@@ -194,4 +194,11 @@ public class FilterANDTest {
         FilterAND filterAND = new FilterAND(new FilterAuthor("Matt"), new FilterContentKeyword("funky"));
         Assertions.assertEquals(Arrays.asList(), filterAND.filter(null));
     }
+
+    @Test
+    @DisplayName("Null filter")
+    void setFilterAND_nullFilter_validInput() {
+        FilterAND filterAND = new FilterAND(null, new FilterContentKeyword("funky"));
+        Assertions.assertEquals(Arrays.asList(), filterAND.filter(null));
+    }
 }
