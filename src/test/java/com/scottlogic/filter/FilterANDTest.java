@@ -10,7 +10,12 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.scottlogic.utils.UserPostFilterData.*;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_1;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_2;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_3;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_4;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_6;
+
 
 public class FilterANDTest {
 
