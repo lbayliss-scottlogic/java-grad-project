@@ -2,11 +2,8 @@ package com.scottlogic.filter_sort;
 
 import com.scottlogic.SortOrder;
 import com.scottlogic.UserPost;
-import com.scottlogic.filter.Filter;
 import com.scottlogic.filter.FilterAuthor;
-import com.scottlogic.sort.Sort;
 import com.scottlogic.sort.SortDate;
-import com.scottlogic.utils.UserPostFilterData;
 import com.scottlogic.utils.UserPostFilterSortData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -15,6 +12,13 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static com.scottlogic.utils.UserPostFilterSortData.USER_POST_1;
+import static com.scottlogic.utils.UserPostFilterSortData.USER_POST_2;
+import static com.scottlogic.utils.UserPostFilterSortData.USER_POST_3;
+import static com.scottlogic.utils.UserPostFilterSortData.USER_POST_4;
+import static com.scottlogic.utils.UserPostFilterSortData.USER_POST_5;
+import static com.scottlogic.utils.UserPostFilterSortData.USER_POST_6;
 
 public class FilterNameSortDateTest {
 
@@ -28,7 +32,7 @@ public class FilterNameSortDateTest {
         @DisplayName("date ascending")
         void filterAuthorSteve_sortDateAsc() {
             List<UserPost> postsToFilter = UserPostFilterSortData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterSortData.getFilteredNameSteve_sortedDateAsc();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_4, USER_POST_6, USER_POST_3);
             FilterNameSortDate filterNameSortDate = new FilterNameSortDate(filterAuthor, new SortDate(SortOrder.ASC));
             Assertions.assertEquals(expectedFilteredList, filterNameSortDate.filter(postsToFilter));
         }
@@ -37,7 +41,7 @@ public class FilterNameSortDateTest {
         @DisplayName("date descending")
         void filterAuthorSteve_sortDateDesc() {
             List<UserPost> postsToFilter = UserPostFilterSortData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterSortData.getFilteredNameSteve_sortedDateDesc();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_3, USER_POST_6, USER_POST_4);
             FilterNameSortDate filterNameSortDate = new FilterNameSortDate(filterAuthor, new SortDate(SortOrder.DESC));
             Assertions.assertEquals(expectedFilteredList, filterNameSortDate.filter(postsToFilter));
         }

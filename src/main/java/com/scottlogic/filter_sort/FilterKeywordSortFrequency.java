@@ -58,11 +58,14 @@ public class FilterKeywordSortFrequency implements Filter {
                     .sorted(Entry.comparingByValue(Comparator.reverseOrder()))
                     .forEachOrdered(a -> sortedList.put(a.getKey(), a.getValue()));
         }
-        else {
+        else if (sortOrder.equals(SortOrder.ASC)) {
             filteredList.entrySet()
                     .stream()
                     .sorted(Entry.comparingByValue())
                     .forEachOrdered(a -> sortedList.put(a.getKey(), a.getValue()));
+        }
+        else {
+            return null;
         }
 
         return new ArrayList<>(sortedList.keySet());

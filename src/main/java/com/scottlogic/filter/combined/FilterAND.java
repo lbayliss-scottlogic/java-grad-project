@@ -18,6 +18,9 @@ public class FilterAND implements Filter {
 
     @Override
     public List<UserPost> filter(List<UserPost> inputList) {
+        if (inputList == null) {
+            return null;
+        }
         List<UserPost> outputList1 = firstFilter.filter(inputList);
         List<UserPost> outputList2 = secondFilter.filter(inputList);
         List<UserPost> andList = new ArrayList<>();

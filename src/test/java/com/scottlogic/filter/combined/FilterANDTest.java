@@ -2,11 +2,11 @@ package com.scottlogic.filter.combined;
 
 import com.scottlogic.UserPost;
 import com.scottlogic.filter.Filter;
+import com.scottlogic.filter.combined.FilterAND;
 import com.scottlogic.filter.FilterAuthor;
 import com.scottlogic.filter.FilterBetweenDates;
 import com.scottlogic.filter.FilterContentKeyword;
 import com.scottlogic.filter.FilterLikedPosts;
-import com.scottlogic.filter.combined.FilterAND;
 import com.scottlogic.utils.UserPostFilterData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -15,6 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_1;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_2;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_3;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_4;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_6;
+
 
 public class FilterANDTest {
 
@@ -28,7 +35,7 @@ public class FilterANDTest {
         @DisplayName("content keyword: you")
         void filterAuthorMatt_AND_keyword_you() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFiltered_authorMatt_AND_keyword_you();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_2);
             FilterAND filterAND = new FilterAND(filterAuthor_Matt, new FilterContentKeyword("you"));
             Assertions.assertEquals(expectedFilteredList, filterAND.filter(postsToFilter));
         }
@@ -37,7 +44,7 @@ public class FilterANDTest {
         @DisplayName("liked posts")
         void filterAuthorMatt_AND_likedPosts() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFiltered_authorMatt_AND_likedPosts();
+            List<UserPost> expectedFitleredList = Arrays.asList();
             FilterAND filterAND = new FilterAND(filterAuthor_Matt, new FilterLikedPosts());
             Assertions.assertEquals(expectedFitleredList, filterAND.filter(postsToFilter));
         }
@@ -46,7 +53,7 @@ public class FilterANDTest {
         @DisplayName("date")
         void setFilterAuthorMatt_AND_date() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFiltered_authorMatt_AND_date();
+            List<UserPost> expectedFitleredList = Arrays.asList(USER_POST_2);
             FilterAND filterAND = new FilterAND(filterAuthor_Matt,
                     new FilterBetweenDates("2016-01-01T01:01:01Z 2021-01-01T01:01:01Z"));
             Assertions.assertEquals(expectedFitleredList, filterAND.filter(postsToFilter));
@@ -56,7 +63,7 @@ public class FilterANDTest {
         @DisplayName("author name: 'funky'")
         void setFilterAuthorMatt_AND_authorFunky() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFiltered_authorMatt_AND_authorFunky();
+            List<UserPost> expectedFitleredList = Arrays.asList();
             FilterAND filterAND = new FilterAND(filterAuthor_Matt, new FilterAuthor("funky"));
             Assertions.assertEquals(expectedFitleredList, filterAND.filter(postsToFilter));
         }
@@ -72,7 +79,7 @@ public class FilterANDTest {
         @DisplayName("content keyword: you")
         void filterBetweenDates_AND_keyword_you() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredBetweenDates_AND_keywordYou();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_2);
             FilterAND filterAND = new FilterAND(filterBetweenDates, new FilterContentKeyword("you"));
             Assertions.assertEquals(expectedFilteredList, filterAND.filter(postsToFilter));
         }
@@ -81,7 +88,7 @@ public class FilterANDTest {
         @DisplayName("liked posts")
         void filterBetweenDates_AND_likedPosts() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFilteredBetweenDates_AND_likedPosts();
+            List<UserPost> expectedFitleredList = Arrays.asList(USER_POST_1, USER_POST_3);
             FilterAND filterAND = new FilterAND(filterBetweenDates, new FilterLikedPosts());
             Assertions.assertEquals(expectedFitleredList, filterAND.filter(postsToFilter));
         }
@@ -90,18 +97,18 @@ public class FilterANDTest {
         @DisplayName("date")
         void filterBetweenDates_AND_betweenDate() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFilteredBetweenDates_AND_betweenDates();
+            List<UserPost> expectedFitleredList = Arrays.asList();
             FilterAND filterAND = new FilterAND(filterBetweenDates,
                     new FilterBetweenDates("2016-01-01T01:01:01Z 2020-01-01T01:01:01Z"));
             Assertions.assertEquals(expectedFitleredList, filterAND.filter(postsToFilter));
         }
 
         @Test
-        @DisplayName("author name: 'funky'")
-        void filterBetweenDates_AND_authorFunky() {
+        @DisplayName("author name: 'Matt'")
+        void filterBetweenDates_AND_authorMatt() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFilteredBetweenDates_AND_authorFunky();
-            FilterAND filterAND = new FilterAND(filterBetweenDates, new FilterAuthor("funky"));
+            List<UserPost> expectedFitleredList = Arrays.asList(USER_POST_2);
+            FilterAND filterAND = new FilterAND(filterBetweenDates, new FilterAuthor("Matt"));
             Assertions.assertEquals(expectedFitleredList, filterAND.filter(postsToFilter));
         }
     }
@@ -113,10 +120,10 @@ public class FilterANDTest {
         FilterLikedPosts filterLikedPosts = new FilterLikedPosts();
 
         @Test
-        @DisplayName("author name = 'Steve'")
-        void filterLikedPosts_AND_authorSteve() {
+        @DisplayName("author name = 'Matt'")
+        void filterLikedPosts_AND_authorMatt() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredLikedPosts_AND_authorSteve();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_3, USER_POST_4);
             FilterAND filterAND = new FilterAND(filterLikedPosts, new FilterAuthor("Steve"));
             Assertions.assertEquals(expectedFilteredList, filterAND.filter(postsToFilter));
         }
@@ -125,7 +132,7 @@ public class FilterANDTest {
         @DisplayName("between dates = '2016-01-01T01:01:01Z 2021-01-01T01:01:01Z'")
         void filterLikedPosts_AND_betweenDates() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredLikedPosts_AND_betweenDates();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_1, USER_POST_3);
             FilterAND filterAND = new FilterAND(filterLikedPosts,
                     new FilterBetweenDates("2016-01-01T01:01:01Z 2021-01-01T01:01:01Z"));
             Assertions.assertEquals(expectedFilteredList, filterAND.filter(postsToFilter));
@@ -135,7 +142,7 @@ public class FilterANDTest {
         @DisplayName("content keyword = 'funky'")
         void filterLikedPosts_AND_keywordFunky() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredLikedPosts_AND_keywordFunky();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_6);
             FilterAND filterAND = new FilterAND(filterLikedPosts,
                     new FilterContentKeyword("funky"));
             Assertions.assertEquals(expectedFilteredList, filterAND.filter(postsToFilter));
@@ -152,7 +159,7 @@ public class FilterANDTest {
         @DisplayName("author name = 'Steve'")
         void filterKeywordIs_AND_authorSteve() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredKeywordLi_AND_authorSteve();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_3);
             FilterAND filterAND = new FilterAND(filterContentKeyword, new FilterAuthor("Steve"));
             Assertions.assertEquals(expectedFilteredList, filterAND.filter(postsToFilter));
         }
@@ -161,7 +168,7 @@ public class FilterANDTest {
         @DisplayName("between dates = '2016-01-01T01:01:01Z 2021-01-01T01:01:01Z'")
         void filterKeywordIs_AND_betweenDates() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredKeywordLi_AND_betweenDates();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_1, USER_POST_2, USER_POST_3);
             FilterAND filterAND = new FilterAND(filterContentKeyword,
                     new FilterBetweenDates("2016-01-01T01:01:01Z 2021-01-01T01:01:01Z"));
             Assertions.assertEquals(expectedFilteredList, filterAND.filter(postsToFilter));
@@ -171,7 +178,7 @@ public class FilterANDTest {
         @DisplayName("content keyword = 'funky'")
         void filterKeywordIs_AND_keywordFunky() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredKeywordLi_AND_keywordFunky();
+            List<UserPost> expectedFilteredList = Arrays.asList();
             FilterAND filterAND = new FilterAND(filterContentKeyword, new FilterContentKeyword("funky"));
             Assertions.assertEquals(expectedFilteredList, filterAND.filter(postsToFilter));
         }
@@ -180,7 +187,7 @@ public class FilterANDTest {
         @DisplayName("liked posts")
         void filterKeywordIs_AND_likedPosts() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredKeywordLi_AND_likedPosts();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_1, USER_POST_3);
             FilterAND filterAND = new FilterAND(filterContentKeyword, new FilterLikedPosts());
             Assertions.assertEquals(expectedFilteredList, filterAND.filter(postsToFilter));
         }
@@ -198,6 +205,13 @@ public class FilterANDTest {
     @DisplayName("Null input list")
     void setFilterAND_nullInput() {
         FilterAND filterAND = new FilterAND(new FilterAuthor("Matt"), new FilterContentKeyword("funky"));
-        Assertions.assertEquals(Arrays.asList(), filterAND.filter(null));
+        Assertions.assertEquals(null, filterAND.filter(null));
+    }
+
+    @Test
+    @DisplayName("Null filter")
+    void setFilterAND_nullFilter_validInput() {
+        FilterAND filterAND = new FilterAND(null, new FilterContentKeyword("funky"));
+        Assertions.assertEquals(null, filterAND.filter(null));
     }
 }

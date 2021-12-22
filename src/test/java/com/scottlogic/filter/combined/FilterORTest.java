@@ -16,6 +16,14 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_1;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_2;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_3;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_4;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_5;
+import static com.scottlogic.utils.UserPostFilterData.USER_POST_6;
+
+
 public class FilterORTest {
 
     @Nested
@@ -28,37 +36,37 @@ public class FilterORTest {
         @DisplayName("content keyword = 'funky'")
         void filterAuthorMatt_OR_ContentKeywordfunky() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFiltered_authorMatt_OR_keywordfunky();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_2, USER_POST_5, USER_POST_6);
             FilterOR filterOR = new FilterOR(filterAuthor_Matt, new FilterContentKeyword("funky"));
-            Assertions.assertEquals(expectedFilteredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
 
         @Test
         @DisplayName("liked posts")
         void filterAuthorMatt_OR_likedPosts() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFiltered_authorMatt_OR_likedPosts();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_2, USER_POST_1, USER_POST_3, USER_POST_4, USER_POST_6);
             FilterOR filterOR = new FilterOR(filterAuthor_Matt, new FilterLikedPosts());
-            Assertions.assertEquals(expectedFitleredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
 
         @Test
         @DisplayName("date")
         void setFilterAuthorMatt_OR_date() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFiltered_authorMatt_OR_date();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_2, USER_POST_1, USER_POST_3);
             FilterOR filterOR = new FilterOR(filterAuthor_Matt,
                     new FilterBetweenDates("2016-01-01T01:01:01Z 2021-01-01T01:01:01Z"));
-            Assertions.assertEquals(expectedFitleredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
 
         @Test
         @DisplayName("author name: 'funky'")
         void setFilterAuthorMatt_OR_authorFunky() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFiltered_authorMatt_OR_authorFunky();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_2, USER_POST_5);
             FilterOR filterOR = new FilterOR(filterAuthor_Matt, new FilterAuthor("funky"));
-            Assertions.assertEquals(expectedFitleredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
     }
 
@@ -72,37 +80,40 @@ public class FilterORTest {
         @DisplayName("author name: 'Mick'")
         void filterBetweenDates_OR_authorNameMick() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredBetweenDates_OR_authorMick();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_1, USER_POST_2, USER_POST_3);
             FilterOR filterOR = new FilterOR(filterBetweenDates, new FilterAuthor("Mick"));
-            Assertions.assertEquals(expectedFilteredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
 
         @Test
         @DisplayName("content keyword = 'funky'")
         void filterBetweenDates_OR_ContentKeywordfunky() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredBetweenDates_OR_keywordFunky();
+            List<UserPost> expectedFilteredList = Arrays.asList(
+                    USER_POST_1, USER_POST_2, USER_POST_3, USER_POST_5, USER_POST_6);
             FilterOR filterOR = new FilterOR(filterBetweenDates, new FilterContentKeyword("funky"));
-            Assertions.assertEquals(expectedFilteredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
 
         @Test
         @DisplayName("liked posts")
         void filterBetweenDates_OR_likedPosts() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFilteredBetweenDates_OR_likedPosts();
+            List<UserPost> expectedFilteredList = Arrays.asList(
+                    USER_POST_1, USER_POST_2, USER_POST_3, USER_POST_4, USER_POST_6);
             FilterOR filterOR = new FilterOR(filterBetweenDates, new FilterLikedPosts());
-            Assertions.assertEquals(expectedFitleredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
 
         @Test
         @DisplayName("date")
         void setFilterAuthorMatt_OR_date() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFilteredBetweenDates_OR_betweenDates();
+            List<UserPost> expectedFilteredList = Arrays.asList(
+                    USER_POST_1, USER_POST_2, USER_POST_3, USER_POST_5, USER_POST_6);
             FilterOR filterOR = new FilterOR(filterBetweenDates,
                     new FilterBetweenDates("2000-01-01T01:01:01Z 2005-01-01T01:01:01Z"));
-            Assertions.assertEquals(expectedFitleredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
     }
 
@@ -116,28 +127,28 @@ public class FilterORTest {
         @DisplayName("author name = 'Mick'")
         void filterLikedPosts_OR_authorNameMick() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredLikedPosts_OR_authorMick();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_1, USER_POST_3, USER_POST_4, USER_POST_6);
             FilterOR filterOR = new FilterOR(filterLikedPosts, new FilterAuthor("Mick"));
-            Assertions.assertEquals(expectedFilteredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
 
         @Test
         @DisplayName("content keyword = 'funky'")
         void filterLikedPosts_OR_ContentKeywordfunky() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredLikedPosts_OR_keywordFunky();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_1, USER_POST_3, USER_POST_4, USER_POST_6, USER_POST_5);
             FilterOR filterOR = new FilterOR(filterLikedPosts, new FilterContentKeyword("funky"));
-            Assertions.assertEquals(expectedFilteredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
 
         @Test
         @DisplayName("date")
         void setFilterAuthorMatt_OR_date() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFilteredLikedPosts_OR_dateBetween();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_1, USER_POST_3, USER_POST_4, USER_POST_6, USER_POST_5);
             FilterOR filterOR = new FilterOR(filterLikedPosts,
                     new FilterBetweenDates("2000-01-01T01:01:01Z 2005-01-01T01:01:01Z"));
-            Assertions.assertEquals(expectedFitleredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
     }
 
@@ -151,37 +162,37 @@ public class FilterORTest {
         @DisplayName("author name = 'Mick'")
         void filterLikedPosts_OR_authorNameMick() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredKeywordYou_OR_AuthorMick();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_2, USER_POST_1);
             FilterOR filterOR = new FilterOR(filterContentKeyword, new FilterAuthor("Mick"));
-            Assertions.assertEquals(expectedFilteredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
 
         @Test
         @DisplayName("liked posts")
         void filterLikedPosts_OR_likedPosts() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFilteredList = UserPostFilterData.getFilteredKeywordYou_OR_likedPosts();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_2, USER_POST_1, USER_POST_3, USER_POST_4, USER_POST_6);
             FilterOR filterOR = new FilterOR(filterContentKeyword, new FilterLikedPosts());
-            Assertions.assertEquals(expectedFilteredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
 
         @Test
         @DisplayName("date")
         void setFilterAuthorMatt_OR_date() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFilteredKeywordYou_OR_dates();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_2, USER_POST_5, USER_POST_6);
             FilterOR filterOR = new FilterOR(filterContentKeyword,
                     new FilterBetweenDates("2000-01-01T01:01:01Z 2005-01-01T01:01:01Z"));
-            Assertions.assertEquals(expectedFitleredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
 
         @Test
         @DisplayName("content keyword = 'Jeoff'")
         void setFilterKeywordYou_OR_filterKeywordJeoff() {
             List<UserPost> postsToFilter = UserPostFilterData.getUnfilteredData();
-            List<UserPost> expectedFitleredList = UserPostFilterData.getFilteredKeywordYou_OR_keywordJeoff();
+            List<UserPost> expectedFilteredList = Arrays.asList(USER_POST_2, USER_POST_4);
             FilterOR filterOR = new FilterOR(filterContentKeyword, new FilterContentKeyword("Jeoff"));
-            Assertions.assertEquals(expectedFitleredList, filterOR.filter(postsToFilter));
+            Assertions.assertTrue(expectedFilteredList.containsAll(filterOR.filter(postsToFilter)));
         }
     }
 
@@ -197,6 +208,13 @@ public class FilterORTest {
     @DisplayName("Null input list")
     void setFilterOR_nullInput() {
         FilterOR filterOR = new FilterOR(new FilterAuthor("Matt"), new FilterContentKeyword("funky"));
+        Assertions.assertEquals(Arrays.asList(), filterOR.filter(null));
+    }
+
+    @Test
+    @DisplayName("Null filter")
+    void setFilterOR_nullFilter_validInput() {
+        FilterOR filterOR = new FilterOR(null, new FilterContentKeyword("funky"));
         Assertions.assertEquals(Arrays.asList(), filterOR.filter(null));
     }
 }
