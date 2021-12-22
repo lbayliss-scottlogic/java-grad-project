@@ -5,7 +5,9 @@ import com.scottlogic.filter.Filter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FilterOR implements Filter {
 
@@ -25,10 +27,9 @@ public class FilterOR implements Filter {
         List<UserPost> outputList1 = firstFilter.filter(inputList);
         List<UserPost> outputList2 = secondFilter.filter(inputList);
 
-        List<UserPost> outputList2copy = new ArrayList<>(outputList2);
-        outputList2copy.removeAll(outputList1);
-        outputList1.addAll(outputList2copy);
+        Set<UserPost> orList = new HashSet<>(outputList1);
+        orList.addAll(outputList2);
 
-        return outputList1;
+        return new ArrayList<>(orList);
     }
 }

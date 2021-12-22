@@ -6,7 +6,6 @@ import com.scottlogic.filter.FilterAuthor;
 import com.scottlogic.filter.FilterBetweenDates;
 import com.scottlogic.filter.FilterContentKeyword;
 import com.scottlogic.filter.FilterLikedPosts;
-import com.scottlogic.filter.combined.FilterOR;
 import com.scottlogic.utils.UserPostFilterData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
