@@ -26,16 +26,8 @@ public class FilterOR implements Filter {
         List<UserPost> outputList1 = firstFilter.filter(inputList);
         List<UserPost> outputList2 = secondFilter.filter(inputList);
 
-        Set<UserPost> orList = new HashSet<>();
-        for (UserPost userPost : outputList1) {
-            orList.add(userPost);
-        }
-        for (UserPost userPost : outputList2) {
-            orList.add(userPost);
-        }
-        /*List<UserPost> outputList2copy = new ArrayList<>(outputList2);
-        outputList2copy.removeAll(outputList1);
-        outputList1.addAll(outputList2copy);*/
+        Set<UserPost> orList = new HashSet<>(outputList1);
+        orList.addAll(outputList2);
 
         return new ArrayList<>(orList);
     }
