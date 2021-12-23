@@ -37,12 +37,12 @@ public class FilterKeywordSortFrequency implements Filter {
             return null;
         }
 
-        Map<UserPost, Integer> postKeywordCountMap = getKeywordCount(inputList);
+        Map<UserPost, Integer> postKeywordCountMap = getKeywordCount(inputList, keyword);
 
-        return sortKeywordCountMap(postKeywordCountMap);
+        return sortKeywordCountMap(postKeywordCountMap, sortOrder);
     }
 
-    private Map<UserPost, Integer> getKeywordCount(List<UserPost> inputList) {
+    private static Map<UserPost, Integer> getKeywordCount(List<UserPost> inputList, String keyword) {
         Map<UserPost, Integer> postKeywordCountMap = new HashMap<>();
 
         for (UserPost userPost : inputList) {
@@ -59,7 +59,7 @@ public class FilterKeywordSortFrequency implements Filter {
         return postKeywordCountMap;
     }
 
-    private List<UserPost> sortKeywordCountMap(Map<UserPost, Integer> inputMap) {
+    private static List<UserPost> sortKeywordCountMap(Map<UserPost, Integer> inputMap, SortOrder sortOrder) {
 
         if (sortOrder.equals(SortOrder.DESC)) {
             return inputMap.entrySet()
@@ -68,12 +68,10 @@ public class FilterKeywordSortFrequency implements Filter {
                     .map(Map.Entry::getKey)
                     .collect(Collectors.toList());
         }
-        else {
-            return inputMap.entrySet()
-                    .stream()
-                    .sorted(Entry.comparingByValue())
-                    .map(Map.Entry::getKey)
-                    .collect(Collectors.toList());
-        }
+        return inputMap.entrySet()
+                .stream()
+                .sorted(Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
     }
 }
