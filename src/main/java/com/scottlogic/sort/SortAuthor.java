@@ -10,8 +10,14 @@ import java.util.List;
 
 public class SortAuthor implements Sort {
 
+    private SortOrder sortOrder;
+
+    public SortAuthor(SortOrder orderToSort) {
+        sortOrder = orderToSort;
+    }
+
     @Override
-    public List<UserPost> sort(List<UserPost> inputList, SortOrder sortOrder) {
+    public List<UserPost> sort(List<UserPost> inputList) {
         if (inputList == null) {
             return Arrays.asList();
         }

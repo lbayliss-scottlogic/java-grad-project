@@ -1,17 +1,20 @@
-package com.scottlogic.filter;
+package com.scottlogic.filter.combined;
 
 import com.scottlogic.UserPost;
+import com.scottlogic.filter.Filter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class FilterAND implements Filter {
+public class FilterOR implements Filter {
 
     private Filter firstFilter;
     private Filter secondFilter;
 
-    public FilterAND(Filter filter1, Filter filter2) {
+    public FilterOR(Filter filter1, Filter filter2) {
         firstFilter = filter1;
         secondFilter = filter2;
     }
@@ -23,14 +26,10 @@ public class FilterAND implements Filter {
         }
         List<UserPost> outputList1 = firstFilter.filter(inputList);
         List<UserPost> outputList2 = secondFilter.filter(inputList);
-        List<UserPost> andList = new ArrayList<>();
 
-        for (UserPost userPost : outputList1) {
-            if (outputList2.contains(userPost)) {
-                andList.add(userPost);
-            }
-        }
+        Set<UserPost> orList = new HashSet<>(outputList1);
+        orList.addAll(outputList2);
 
-        return andList;
+        return new ArrayList<>(orList);
     }
 }

@@ -1,6 +1,11 @@
-package com.scottlogic.filter;
+package com.scottlogic.filter.combined;
 
 import com.scottlogic.UserPost;
+import com.scottlogic.filter.Filter;
+import com.scottlogic.filter.FilterAuthor;
+import com.scottlogic.filter.FilterBetweenDates;
+import com.scottlogic.filter.FilterContentKeyword;
+import com.scottlogic.filter.FilterLikedPosts;
 import com.scottlogic.utils.UserPostFilterData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -207,8 +212,8 @@ public class FilterORTest {
 
     @Test
     @DisplayName("Null filter")
-    void setFilterAND_nullFilter_validInput() {
-        FilterAND filterAND = new FilterAND(null, new FilterContentKeyword("funky"));
-        Assertions.assertEquals(Arrays.asList(), filterAND.filter(null));
+    void setFilterOR_nullFilter_validInput() {
+        FilterOR filterOR = new FilterOR(null, new FilterContentKeyword("funky"));
+        Assertions.assertEquals(Arrays.asList(), filterOR.filter(null));
     }
 }

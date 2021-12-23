@@ -13,14 +13,15 @@ import java.util.List;
 
 public class SortContentLengthTest {
 
-    SortContentLength sortContentLength = new SortContentLength();
+    SortContentLength sortContentLengthAsc = new SortContentLength(SortOrder.ASC);
+    SortContentLength sortContentLengthDesc = new SortContentLength(SortOrder.DESC);
 
     @Test
     @DisplayName("ascending functionality")
     void sortContentLengthAscending() {
         List<UserPost> postsToSort = UserPostSortData.getUnsortedList();
         List<UserPost> expectedContentSort = UserPostSortData.getSortedContentLengthAscending();
-        Assertions.assertEquals(expectedContentSort, sortContentLength.sort(postsToSort, SortOrder.ASC));
+        Assertions.assertEquals(expectedContentSort, sortContentLengthAsc.sort(postsToSort));
     }
 
     @Test
@@ -28,7 +29,7 @@ public class SortContentLengthTest {
     void sortContentLengthDescending() {
         List<UserPost> postsToSort = UserPostSortData.getUnsortedList();
         List<UserPost> expectedContentSort = UserPostSortData.getSortedContentLengthDescending();
-        Assertions.assertEquals(expectedContentSort, sortContentLength.sort(postsToSort, SortOrder.DESC));
+        Assertions.assertEquals(expectedContentSort, sortContentLengthDesc.sort(postsToSort));
     }
 
     @Nested
@@ -38,14 +39,14 @@ public class SortContentLengthTest {
         @DisplayName("ascending sort")
         void sortAscending_emptyInput() {
             List<UserPost> emptyList = Arrays.asList();
-            Assertions.assertEquals(emptyList, sortContentLength.sort(emptyList, SortOrder.ASC));
+            Assertions.assertEquals(emptyList, sortContentLengthAsc.sort(emptyList));
         }
 
         @Test
         @DisplayName("descending sort")
         void sortDescending_emptyInput() {
             List<UserPost> emptyList = Arrays.asList();
-            Assertions.assertEquals(emptyList, sortContentLength.sort(emptyList, SortOrder.DESC));
+            Assertions.assertEquals(emptyList, sortContentLengthDesc.sort(emptyList));
         }
     }
 
@@ -55,13 +56,13 @@ public class SortContentLengthTest {
         @Test
         @DisplayName("ascending sort")
         void sortAscending_nullInput() {
-            Assertions.assertEquals(Arrays.asList(), sortContentLength.sort(null, SortOrder.ASC));
+            Assertions.assertEquals(Arrays.asList(), sortContentLengthAsc.sort(null));
         }
 
         @Test
         @DisplayName("descending sort")
         void sortDescending_nullInput() {
-            Assertions.assertEquals(Arrays.asList(), sortContentLength.sort(null, SortOrder.DESC));
+            Assertions.assertEquals(Arrays.asList(), sortContentLengthDesc.sort(null));
         }
     }
 }

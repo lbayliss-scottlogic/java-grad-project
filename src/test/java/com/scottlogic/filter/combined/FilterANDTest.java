@@ -1,6 +1,12 @@
-package com.scottlogic.filter;
+package com.scottlogic.filter.combined;
 
 import com.scottlogic.UserPost;
+import com.scottlogic.filter.Filter;
+import com.scottlogic.filter.combined.FilterAND;
+import com.scottlogic.filter.FilterAuthor;
+import com.scottlogic.filter.FilterBetweenDates;
+import com.scottlogic.filter.FilterContentKeyword;
+import com.scottlogic.filter.FilterLikedPosts;
 import com.scottlogic.utils.UserPostFilterData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -199,13 +205,13 @@ public class FilterANDTest {
     @DisplayName("Null input list")
     void setFilterAND_nullInput() {
         FilterAND filterAND = new FilterAND(new FilterAuthor("Matt"), new FilterContentKeyword("funky"));
-        Assertions.assertEquals(Arrays.asList(), filterAND.filter(null));
+        Assertions.assertEquals(null, filterAND.filter(null));
     }
 
     @Test
     @DisplayName("Null filter")
     void setFilterAND_nullFilter_validInput() {
         FilterAND filterAND = new FilterAND(null, new FilterContentKeyword("funky"));
-        Assertions.assertEquals(Arrays.asList(), filterAND.filter(null));
+        Assertions.assertEquals(null, filterAND.filter(null));
     }
 }

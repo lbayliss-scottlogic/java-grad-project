@@ -13,14 +13,15 @@ import java.util.List;
 
 public class SortAuthorSurnameTest {
 
-    SortAuthorSurname sortAuthorSurname = new SortAuthorSurname();
+    SortAuthorSurname sortAuthorSurnameAsc = new SortAuthorSurname(SortOrder.ASC);
+    SortAuthorSurname sortAuthorSurnameDesc = new SortAuthorSurname(SortOrder.DESC);
 
     @Test
     @DisplayName("ascending functionaltiy")
     void sortAuthorSurnameAscending() {
         List<UserPost> postsToSort = UserPostSortData.getUnsortedList();
         List<UserPost> expectedSurnameSort = UserPostSortData.getSortedAuthorSurnameAscending();
-        Assertions.assertEquals(expectedSurnameSort, sortAuthorSurname.sort(postsToSort, SortOrder.ASC));
+        Assertions.assertEquals(expectedSurnameSort, sortAuthorSurnameAsc.sort(postsToSort));
     }
 
     @Test
@@ -28,7 +29,7 @@ public class SortAuthorSurnameTest {
     void sortAuthorSurnameDescending() {
         List<UserPost> postsToSort = UserPostSortData.getUnsortedList();
         List<UserPost> expectedSurnameSort = UserPostSortData.getSortedAuthorSurnameDescending();
-        Assertions.assertEquals(expectedSurnameSort, sortAuthorSurname.sort(postsToSort, SortOrder.DESC));
+        Assertions.assertEquals(expectedSurnameSort, sortAuthorSurnameDesc.sort(postsToSort));
     }
 
     @Nested
@@ -38,14 +39,14 @@ public class SortAuthorSurnameTest {
         @DisplayName("ascending sort")
         void sortAscending_emptyInput() {
             List<UserPost> emptyList = Arrays.asList();
-            Assertions.assertEquals(emptyList, sortAuthorSurname.sort(emptyList, SortOrder.ASC));
+            Assertions.assertEquals(emptyList, sortAuthorSurnameAsc.sort(emptyList));
         }
 
         @Test
         @DisplayName("descending sort")
         void sortDescending_emptyInput() {
             List<UserPost> emptyList = Arrays.asList();
-            Assertions.assertEquals(emptyList, sortAuthorSurname.sort(emptyList, SortOrder.DESC));
+            Assertions.assertEquals(emptyList, sortAuthorSurnameDesc.sort(emptyList));
         }
     }
 
@@ -55,13 +56,13 @@ public class SortAuthorSurnameTest {
         @Test
         @DisplayName("ascending sort")
         void sortAscending_nullInput() {
-            Assertions.assertEquals(Arrays.asList(), sortAuthorSurname.sort(null, SortOrder.ASC));
+            Assertions.assertEquals(Arrays.asList(), sortAuthorSurnameAsc.sort(null));
         }
 
         @Test
         @DisplayName("descending sort")
         void sortDescending_nullInput() {
-                Assertions.assertEquals(Arrays.asList(), sortAuthorSurname.sort(null, SortOrder.DESC));
+                Assertions.assertEquals(Arrays.asList(), sortAuthorSurnameDesc.sort(null));
         }
     }
 }
