@@ -19,6 +19,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class FilterKeywordSortFrequency implements Filter {
 
@@ -59,24 +60,20 @@ public class FilterKeywordSortFrequency implements Filter {
     }
 
     private List<UserPost> sortKeywordCountMap(Map<UserPost, Integer> inputMap) {
-        List<UserPost> sortedList = new ArrayList<>();
 
         if (sortOrder.equals(SortOrder.DESC)) {
-            inputMap.entrySet()
+            return inputMap.entrySet()
                     .stream()
                     .sorted(Entry.comparingByValue(Comparator.reverseOrder()))
-                    .forEachOrdered(a -> sortedList.add(a.getKey()));
-            return sortedList;
-        }
-        else if (sortOrder.equals(SortOrder.ASC)) {
-            inputMap.entrySet()
-                    .stream()
-                    .sorted(Entry.comparingByValue())
-                    .forEachOrdered(a -> sortedList.add(a.getKey()));
-            return sortedList;
+                    .map(Map.Entry::getKey)
+                    .collect(Collectors.toList());
         }
         else {
-            return null;
+            return inputMap.entrySet()
+                    .stream()
+                    .sorted(Entry.comparingByValue())
+                    .map(Map.Entry::getKey)
+                    .collect(Collectors.toList());
         }
     }
 }
