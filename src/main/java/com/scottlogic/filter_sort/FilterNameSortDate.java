@@ -23,7 +23,7 @@ public class FilterNameSortDate implements Filter {
         if (inputList == null || filterAuthor == null || sortDate == null) {
             return null;
         }
-        List<UserPost> outputList = filterAuthor.filter(inputList);
-        return sortDate.sort(outputList);
+        List<UserPost> filteredList = filterAuthor.filter(inputList);
+        return sortDate.sort(filteredList);
     }
 }

@@ -78,4 +78,12 @@ public class FilterNameSortDateTest {
         FilterNameSortDate filterNameSortDate = new FilterNameSortDate(null, new SortDate(SortOrder.ASC));
         Assertions.assertEquals(null, filterNameSortDate.filter(postsToFilter));
     }
+
+    @Test
+    @DisplayName("Null date sorter")
+    void filterAuthorSteve_sortDateAsc_nullDate() {
+        List<UserPost> postsToFilter = UserPostFilterSortData.getUnfilteredData();
+        FilterNameSortDate filterNameSortDate = new FilterNameSortDate(filterAuthor, null);
+        Assertions.assertEquals(null, filterNameSortDate.filter(postsToFilter));
+    }
 }

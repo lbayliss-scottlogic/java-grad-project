@@ -36,7 +36,13 @@ public class FilterKeywordSortFrequency implements Filter {
             return null;
         }
 
-        Map<UserPost, Integer> filteredList = new HashMap<>();
+        Map<UserPost, Integer> postKeywordCountMap = getKeywordCount(inputList);
+
+        return sortKeywordCountMap(postKeywordCountMap);
+    }
+
+    private Map<UserPost, Integer> getKeywordCount(List<UserPost> inputList) {
+        Map<UserPost, Integer> postKeywordCountMap = new HashMap<>();
 
         for (UserPost userPost : inputList) {
             String content = userPost.getContents();
@@ -46,28 +52,31 @@ public class FilterKeywordSortFrequency implements Filter {
                 matchCount += 1;
             }
             if (matchCount > 0) {
-                filteredList.put(userPost, matchCount);
+                postKeywordCountMap.put(userPost, matchCount);
             }
         }
+        return postKeywordCountMap;
+    }
 
-        LinkedHashMap<UserPost, Integer> sortedList = new LinkedHashMap<>();
+    private List<UserPost> sortKeywordCountMap(Map<UserPost, Integer> inputMap) {
+        List<UserPost> sortedList = new ArrayList<>();
 
         if (sortOrder.equals(SortOrder.DESC)) {
-            filteredList.entrySet()
+            inputMap.entrySet()
                     .stream()
                     .sorted(Entry.comparingByValue(Comparator.reverseOrder()))
-                    .forEachOrdered(a -> sortedList.put(a.getKey(), a.getValue()));
+                    .forEachOrdered(a -> sortedList.add(a.getKey()));
+            return sortedList;
         }
         else if (sortOrder.equals(SortOrder.ASC)) {
-            filteredList.entrySet()
+            inputMap.entrySet()
                     .stream()
                     .sorted(Entry.comparingByValue())
-                    .forEachOrdered(a -> sortedList.put(a.getKey(), a.getValue()));
+                    .forEachOrdered(a -> sortedList.add(a.getKey()));
+            return sortedList;
         }
         else {
             return null;
         }
-
-        return new ArrayList<>(sortedList.keySet());
     }
 }
